@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
+
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -31,6 +33,12 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'rgeo', '~> 0.3.20'
+gem 'rgeo-shapefile'
+gem 'activerecord-postgis-adapter'
+gem 'gmaps4rails'
+gem 'haml', '~> 4.0.7'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
