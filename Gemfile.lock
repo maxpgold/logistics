@@ -43,6 +43,8 @@ GEM
     execjs (2.5.2)
     fastercsv (1.5.5)
     geocoder (1.2.10)
+    gmap_coordinates_picker (0.1.0)
+      rails (>= 3.1.0)
     gmaps4rails (2.1.2)
     haml (4.0.7)
       tilt
@@ -127,6 +129,7 @@ DEPENDENCIES
   activerecord-postgis-adapter
   coffee-rails (~> 4.0.0)
   geocoder
+  gmap_coordinates_picker
   gmaps4rails
   haml (~> 4.0.7)
   jbuilder (~> 1.2)

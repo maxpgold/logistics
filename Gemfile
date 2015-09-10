@@ -40,6 +40,7 @@ gem 'activerecord-postgis-adapter'
 gem 'gmaps4rails'
 gem 'haml', '~> 4.0.7'
 gem 'geocoder'
+gem 'gmap_coordinates_picker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
