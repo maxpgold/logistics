@@ -42,6 +42,7 @@ GEM
     erubis (2.7.0)
     execjs (2.5.2)
     fastercsv (1.5.5)
+    geocoder (1.2.10)
     gmaps4rails (2.1.2)
     haml (4.0.7)
       tilt
@@ -125,6 +126,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgis-adapter
   coffee-rails (~> 4.0.0)
+  geocoder
   gmaps4rails
   haml (~> 4.0.7)
   jbuilder (~> 1.2)
