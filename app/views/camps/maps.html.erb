@@ -4,10 +4,11 @@
 <h4> PLEASE WORK </h4>
 
 <div style='width: 800px;'>
-  <div id="geolocation" style='width: 800px; height: 400px;'></div>
+  <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
-<%= text_field_tag(:latitudex, "", id: 'location_attributes_latitude') %>
+<%= text_field_tag(:latitude, "", id: 'lat') %>
+<%= text_field_tag(:longitude, "", id: 'lng') %>
 
 <script type="text/javascript">
 
@@ -19,72 +20,29 @@
 //     navigator.geolocation.getCurrentPosition(displayOnMap);
 // });
 
-// function displayOnMap(position){
-//   var marker = handler.addMarker({
-//     lat: position.coords.latitude,
-//     lng: position.coords.longitude
-//   });
-//   handler.map.centerOn(marker);
-// };
-
-
 handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'geolocation'}}, function(){
-  markers = handler.addMarkers([
-    {
-      "lat": 0,
-      "lng": 0,
-      "picture": {
-        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-        "width":  36,
-        "height": 36
-      },
-      "infowindow": "hello!"
-    }
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          {
+            "lat": 51.5008,
+            "lng": 0.1247,
+            "picture": {
+              "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+              "width":  36,
+              "height": 36
+            },
+            "infowindow": "hello!"
+          }
+        ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
 
 
-// handler = Gmaps.build('Google');
-// handler.buildMap({
-//     provider: {
-//       disableDefaultUI: false
-//       // pass in other Google Maps API options here
-//     },
-//     internal: {
-//       id: 'geolocation'
-//     }
-//   },
-//   function(){
-//     markers = handler.addMarkers([
-//       {
-//         "lat": 0,
-//         "lng": 0,
-//         "picture": {
-//           "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-//           "width":  36,
-//           "height": 36
-//         },
-//         "infowindow": "hello!"
-//       }
-//     ]);
-//     handler.bounds.extendWith(markers);
-//     handler.fitMapToBounds();
-//   }
-// );
-
-// handler.buildMap({ internal: {id: 'geolocation'} }, function(){
-//   if(navigator.geolocation)
-//     navigator.geolocation.getCurrentPosition(displayOnMap);
-// });
-
-// function displayOnMap(position){
-//   var marker = handler.addMarker({
-//     lat: position.coords.latitude,
-//     lng: position.coords.longitude
-//   });
-//   handler.map.centerOn(marker);
-// };
+      google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+       document.getElementById('lat').innerHTML = event.latLng.lat();
+       document.getElementById('lng').innerHTML = event.latLng.lng();
+       alert( 'Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng() );
+      });
+    });
 </script>
+

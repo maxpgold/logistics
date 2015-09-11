@@ -8,4 +8,9 @@ class CampsController < ApplicationController
     @lat = Venue.find(3).latitude
     @longitude = Venue.find(3).longitude
   end
+
+  def edit
+    @camp = Camp.find(params[:id])
+    @venue = @camp.venues.build()
+  end
 end

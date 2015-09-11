@@ -1,0 +1,52 @@
+%script{:src => "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry", :type => "text/javascript"}
+%script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", :type => "text/javascript"}
+
+%h4 PLEASE WORK
+%div{:style => "width: 800px;"}
+  #map{:style => "width: 800px; height: 400px;"}
+  = form_for @venue do |v|
+    .medium-3.columns#hidden
+      = hidden_field_tag :latitude
+      = hidden_field_tag :longitude
+      = v.label :name, 'Venue Name'
+      = v.text_field :name
+      = v.hidden_field :camp_id, value: @camp.id
+      = v.submit 'Submit', class: :button
+
+
+
+
+
+:javascript
+  // WAY TO GET CURRENT GEOLOCATION
+  // var handler = Gmaps.build('Google');
+  // handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+  //   if(navigator.geolocation)
+  //     navigator.geolocation.getCurrentPosition(displayOnMap);
+  // });
+  
+  handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+          markers = handler.addMarkers([
+            {
+              "lat": 51.5008,
+              "lng": 0.1247,
+              "picture": {
+                "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+                "width":  36,
+                "height": 36
+              },
+              "infowindow": "hello!"
+            }
+          ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+  
+  
+        google.maps.event.addListener(handler.getMap(), 'click', function(event) {
+         $(document.getElementById('latitude')).val(event.latLng.lat());
+         $(document.getElementById('longitude')).val(event.latLng.lng());
+         $(document.getElementById('hidden')).show();
+         alert( 'Lat: ' + event.latLng.lat() + ' and Longitude is: ' + event.latLng.lng() );
+        });
+      });

@@ -8,18 +8,18 @@ class Venue < ActiveRecord::Base
   has_many :scheduled_activities, through: :actvities_scheduled_periods
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode, address: :name
+  # after_validation :reverse_geocode, address: :name
 
-  GEO_FACTORY = RGeo::Geographic.spherical_factory(srid: 4326)
+  # GEO_FACTORY = RGeo::Geographic.spherical_factory(srid: 26910)
 
-  set_rgeo_factory_for_column :coordinates, GEO_FACTORY
+  # set_rgeo_factory_for_column :coordinates, GEO_FACTORY
 
-  geocoded_by :name do |record, results|
-    result = results.first
+  # geocoded_by :name do |record, results|
+  #   result = results.first
 
-    record.name = result.name # Store the name used for geocoding
-    record.coordinates = GEO_FACTORY.point(result.latitude, result.longitude)
-  end
+  #   record.name = result.name # Store the name used for geocoding
+  #   record.coordinates = GEO_FACTORY.point(result.latitude, result.longitude)
+  # end
 
   def distance_from(venue_2)
     # returns distance in miles
