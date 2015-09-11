@@ -30,4 +30,11 @@ class Camp < ActiveRecord::Base
     end
     return week_array
   end
+
+  def marker_json
+    usable_venues = venues.where.not(coordinates: nil)
+    q = usable_venues.map { |v| {"lat" => v.latitude, "lng" => v.longitude, "infowindow" => "#{v.name}"}}
+
+    return q
+  end
 end

@@ -31,11 +31,11 @@ class Venue < ActiveRecord::Base
   end
 
   def latitude
-    parse_coordinates[0]
+    parse_coordinates[1].to_f
   end
 
   def longitude
-    parse_coordinates[1]
+    parse_coordinates[0].to_f
   end
 
   def journey(destination)

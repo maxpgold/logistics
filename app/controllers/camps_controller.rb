@@ -12,5 +12,6 @@ class CampsController < ApplicationController
   def edit
     @camp = Camp.find(params[:id])
     @venue = @camp.venues.build()
+    @marker_json = @camp.marker_json
   end
 end

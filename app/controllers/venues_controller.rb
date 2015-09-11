@@ -2,13 +2,7 @@ class VenuesController < ApplicationController
 
   def create
     venue = Venue.new(venue_params)
-    venue.coordinates = "POINT(#{params[:latitude].to_f.round(6)} #{params[:longitude].to_f.round(6)})"
-
-    puts 'venue'
-    print venue
-    puts 'coordinates'
-    print venue.coordinates
-    puts 'HII'
+    venue.coordinates = "POINT(#{params[:longitude].to_f.round(6)} #{params[:latitude].to_f.round(6)})"
     if venue.coordinates
       if venue.save
         flash[:success]
