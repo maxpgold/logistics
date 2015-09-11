@@ -12,6 +12,8 @@
       = v.text_field :name
       = v.hidden_field :camp_id, value: @camp.id
       = v.submit 'Submit', class: :button
+      = hidden_field_tag :json, content: @marker_json
+      - puts @marker_json
 
 
 
@@ -27,19 +29,27 @@
   
   handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-          markers = handler.addMarkers([
-            {
-              "lat": 0,
-              "lng": 0,
-              "infowindow": "hello!"
-            },
-            {
-              "lat": 0,
-              "lng": 0,
-              "infowindow": "hello!"
-            }
-          ]);
-        // markers = handler.addMarkers(@marker_json);
+          // markers = handler.addMarkers([
+          //   {
+          //     "lat": 41.690295,
+          //     "lng": -75.263602,
+          //     "infowindow": "hello!"
+          //   },
+          //   {
+          //     "lat": 41.640295,
+          //     "lng": -75.273602,
+          //     "infowindow": "hello!"
+          //   }
+          // ]);
+        // json_data = "#{@marker_json}";
+        var json_data = #{@marker_json};
+        console.log('HELLO');
+        console.log(json_data);
+        //var json_data = $(document.getElementById('json')).content()
+        markers = handler.addMarkers(json_data);
+        console.log(markers)
+        console.log(markers.count)
+        console.log('HIIIIII')
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
   

@@ -33,8 +33,8 @@ class Camp < ActiveRecord::Base
 
   def marker_json
     usable_venues = venues.where.not(coordinates: nil)
-    q = usable_venues.map { |v| {"lat" => v.latitude, "lng" => v.longitude, "infowindow" => "#{v.name}"}}
+    q = usable_venues.map { |v| {lat: v.latitude, lng: v.longitude, infowindow: "#{v.name}"} }
 
-    return q
+    return q.to_json
   end
 end
